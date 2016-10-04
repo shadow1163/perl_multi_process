@@ -43,9 +43,10 @@ sub sub1 {
     } else {
         $fh = $logfh;
     }
-    print $fh ("started threads $num\n");
+    select($fh);
+    print("started threads $num\n");
     sleep($num);
-    print $fh ("done with threads $num\n");
+    print("done with threads $num\n");
     close($fh);
     $logfh = undef;
     return($num);
